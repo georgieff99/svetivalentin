@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>За моето пате ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #ff4e8b, #ff9ecf);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.screen {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: 0.6s ease;
+    pointer-events: none;
+}
+
+.screen.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+
+h1 {
+    font-size: 2.8em;
+}
+
+p {
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    color: #ff4e8b;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ffe6f0;
+    transform: scale(1.1);
+}
+
+img {
+    width: 300px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* падащи сърца */
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Екран 1 -->
+<div class="screen active" id="screen1">
+    <h1>Честит Свети Валентин ❤️</h1>
+    <p>Имам малка изненада за теб...</p>
+    <button onclick="nextScreen(2)">Натисни тук 💌</button>
+</div>
+
+<!-- Екран 2 -->
+<div class="screen" id="screen2">
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+    <h1>Обичам те, пате мое ❤️</h1>
+    <button onclick="nextScreen(3)">Вземи си подаръка 🎁</button>
+</div>
+
+<!-- Екран 3 -->
+<div class="screen" id="screen3">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmJ4ZXJvMW01dGxjMGFnOTdpYXBwdWxvcXA2ajFwd2h4eGZwbXcyZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ptjdQLYpKgiUWwLz64/giphy.gif">
+    <h1>Цветенца за моята Юлка булка ❤️</h1>
+    <p>Обзалагам се, че никой не ти е подарявал виртуални цветя досега, хи хи хи хи 😏</p>
+</div>
+
+<script>
+function nextScreen(number) {
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+    document.getElementById("screen" + number).classList.add("active");
+}
+
+// падащи сърца
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
